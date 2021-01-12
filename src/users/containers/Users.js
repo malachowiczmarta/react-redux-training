@@ -15,7 +15,7 @@ export default function Users() {
   }, []);
 
   return (
-    <div>
+    <div className="users-container">
       {isLoading && <p>loading...</p>}
       <p>to jest users component</p>
       <UserList users={users} />

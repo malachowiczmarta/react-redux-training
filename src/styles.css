@@ -7,4 +7,16 @@
   display: flex;
   width: 70vw;
   height: 100vh;
+  margin: 0 auto;
+}
+
+.home-container,
+.users-container {
+  width: 50%;
+}
+
+li {
+  list-style: none;
+  text-align: left;
+  margin-bottom: 10px;
 }
