@@ -20,3 +20,10 @@ li {
   text-align: left;
   margin-bottom: 10px;
 }
+
+.button-container {
+  margin: 0 auto;
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+}

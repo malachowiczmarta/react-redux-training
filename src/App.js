@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./home/Home";
 
 import "./styles.css";
 import Users from "./users/containers/Users";
+import Home from "./home/containers/Home";
 
 export default function App() {
   return (
