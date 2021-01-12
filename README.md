@@ -1,2 +1,2 @@
-# react-redux-training
+# Redux-training
 Created with CodeSandbox
