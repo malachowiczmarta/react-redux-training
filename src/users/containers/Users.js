@@ -3,10 +3,11 @@ import UserList from "../components/UserList";
 import { connect } from "react-redux";
 import { fetchUsers } from "../../home/redux";
 
+// { fetchUsers, users, isError, isLoading }
+
 function Users(props) {
   useEffect(() => {
     props.fetchUsers();
-    // setLoading(false);
   }, []);
 
   return (
@@ -26,8 +27,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchUsers: () => dispatch(fetchUsers())
-});
+const mapDispatchToProps = {
+  fetchUsers
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users);
