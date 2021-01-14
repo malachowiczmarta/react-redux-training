@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Button from "../../UI/Button";
 import { fetchUsers } from "../redux";
 
-export default function Home() {
+function Home() {
   function fetchData() {
     fetchUsers();
   }
@@ -18,3 +18,15 @@ export default function Home() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => ({
+  users: state.users.users,
+  isLoading: state.users.isLoading,
+  isError: state.users.isError
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchUsers: () => dispatch(fetchUsers())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
