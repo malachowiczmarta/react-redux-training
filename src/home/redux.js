@@ -2,6 +2,8 @@ const FETCH_USERS_REQUESTED = "users/FETCH_USERS_REQUESTED";
 const FETCH_USERS_SUCCEDED = "users/FETCH_USERS_SUCCEDED";
 const FETCH_USERS_FAILED = "users/FETCH_USERS_FAILED";
 
+const RESET_USERS = "users/USER_RESET";
+
 const INITIAL_STATE = {
   users: [],
   isLoading: false,
@@ -26,6 +28,8 @@ export const fetchUsers = () => {
   };
 };
 
+export const reset = () => ({ type: RESET_USERS });
+
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case FETCH_USERS_REQUESTED:
@@ -46,6 +50,13 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         isLoading: false,
         isError: true
+      };
+    case RESET_USERS:
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        users: []
       };
     default:
       return state;

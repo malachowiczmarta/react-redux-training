@@ -4,10 +4,6 @@ import { connect } from "react-redux";
 import { fetchUsers } from "../../home/redux";
 
 function Users(props) {
-  // const [users, setUsers] = useState([]);
-  const [isLoading, setLoading] = useState(true);
-  // const [hasError, setError] = useState(false);
-
   useEffect(() => {
     props.fetchUsers();
     // setLoading(false);
@@ -17,7 +13,6 @@ function Users(props) {
     <div className="users-container">
       {props.isLoading && <p>loading...</p>}
       {props.isError && <p>an error has occurred</p>}
-      <p>to jest users component</p>
       <UserList users={props.users} />
     </div>
   );

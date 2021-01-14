@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { connect } from "react-redux";
 import Button from "../../UI/Button";
-import { fetchUsers } from "../redux";
+import { fetchUsers, reset } from "../redux";
 
 function Home(props) {
   function fetchData() {
@@ -13,7 +13,7 @@ function Home(props) {
     <div className="home-container">
       <h1>HOME</h1>
       <Button handleClick={fetchData} label="load" />
-      <Button label="reset" />
+      <Button handleClick={() => props.reset()} label="reset" />
       <Button label="add" />
     </div>
   );
@@ -28,7 +28,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchUsers: () => dispatch(fetchUsers())
+  fetchUsers: () => dispatch(fetchUsers()),
+  reset: () => dispatch(reset())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
