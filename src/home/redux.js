@@ -2,7 +2,8 @@ const FETCH_USERS_REQUESTED = "users/FETCH_USERS_REQUESTED";
 const FETCH_USERS_SUCCEDED = "users/FETCH_USERS_SUCCEDED";
 const FETCH_USERS_FAILED = "users/FETCH_USERS_FAILED";
 
-const RESET_USERS = "users/USER_RESET";
+const RESET_USERS = "users/USERS_RESET";
+const FETCH_USER_SUCCEDED = "users/FETCH_USER_SUCCEDED";
 
 const INITIAL_STATE = {
   users: [],
@@ -12,7 +13,14 @@ const INITIAL_STATE = {
 
 const fetchRequested = () => ({ type: FETCH_USERS_REQUESTED });
 const fetchFailed = () => ({ type: FETCH_USERS_FAILED });
-const fetchSucceded = (data) => ({ type: FETCH_USERS_SUCCEDED, payload: data });
+const fetchUsersSucceded = (data) => ({
+  type: FETCH_USERS_SUCCEDED,
+  payload: data
+});
+const fetchUserSucceded = (data) => ({
+  type: FETCH_USER_SUCCEDED,
+  payload: data
+});
 
 export const fetchUsers = () => {
   return function (dispatch) {
@@ -20,7 +28,21 @@ export const fetchUsers = () => {
     fetch("https://randomuser.me/api/?results=10")
       .then((response) => response.json())
       .then((data) => {
-        dispatch(fetchSucceded(data.results));
+        dispatch(fetchUsersSucceded(data.results));
+      })
+      .catch((error) => {
+        dispatch(fetchFailed());
+      });
+  };
+};
+
+export const addUser = () => {
+  return function (dispatch) {
+    dispatch(fetchRequested());
+    fetch("https://randomuser.me/api/?results=1")
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(fetchUserSucceded(data.results));
       })
       .catch((error) => {
         dispatch(fetchFailed());
@@ -44,6 +66,13 @@ export default (state = INITIAL_STATE, action) => {
         isLoading: false,
         isError: false,
         users: action.payload
+      };
+    case FETCH_USER_SUCCEDED:
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        users: state.users.concat(action.payload)
       };
     case FETCH_USERS_FAILED:
       return {
