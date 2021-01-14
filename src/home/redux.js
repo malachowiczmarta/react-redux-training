@@ -18,7 +18,7 @@ export const fetchUsers = () => {
     fetch("https://randomuser.me/api/?results=10")
       .then((response) => response.json())
       .then((data) => {
-        dispatch(fetchSucceded(data));
+        dispatch(fetchSucceded(data.results));
       })
       .catch((error) => {
         dispatch(fetchFailed());
@@ -39,7 +39,7 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         isLoading: false,
         isError: false,
-        posts: action.payload
+        users: action.payload
       };
     case FETCH_USERS_FAILED:
       return {

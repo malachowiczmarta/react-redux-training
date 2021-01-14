@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { connect } from "react-redux";
 import Button from "../../UI/Button";
 import { fetchUsers } from "../redux";
 
-function Home() {
+function Home(props) {
   function fetchData() {
-    fetchUsers();
+    props.fetchUsers();
   }
 
   return (
@@ -19,11 +19,13 @@ function Home() {
   );
 }
 
-const mapStateToProps = (state) => ({
-  users: state.users.users,
-  isLoading: state.users.isLoading,
-  isError: state.users.isError
-});
+const mapStateToProps = (state) => {
+  return {
+    users: state.home.users,
+    isLoading: state.home.isLoading,
+    isError: state.home.isError
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   fetchUsers: () => dispatch(fetchUsers())
