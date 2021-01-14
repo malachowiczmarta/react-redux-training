@@ -1,15 +1,20 @@
 import React from "react";
-import HomeButtons from "../components/HomeButtons";
+
 import { connect } from "react-redux";
-import { fetchPosts } from "../redux";
+import Button from "../../UI/Button";
+import { fetchUsers } from "../redux";
 
 export default function Home() {
-  function fatchData() {}
+  function fetchData() {
+    fetchUsers();
+  }
 
   return (
     <div className="home-container">
       <h1>HOME</h1>
-      <HomeButtons />
+      <Button handleClick={fetchData} label="load" />
+      <Button label="reset" />
+      <Button label="add" />
     </div>
   );
 }
